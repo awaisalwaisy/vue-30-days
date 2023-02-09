@@ -1,0 +1,156 @@
+<template>
+  <div class="flex flex-col items-center justify-center h-screen">
+    <div class="flex flex-col items-center justify-center mb-6">
+      <img src="~/assets/svg/vuejs.svg" alt="logo" class="w-20 h-20 mb-4" />
+      <h1
+        class="text-lg text-center text-gray-800 dark:text-gray-100"
+        v-if="!sent && !user"
+      >
+        Create/login to your account
+      </h1>
+    </div>
+    <template v-if="!sent && !user">
+      <UInput
+        v-model="email"
+        class=""
+        size="xl"
+        variant="white"
+        type="email"
+        name="login-email"
+        placeholder="Enter valid email"
+        autofocus
+      />
+      <button
+        v-if="!loading"
+        type="button"
+        class="text-white bg-[#6363FF] hover:bg-[#6363FF]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 m-4"
+        @click="handleLogin"
+      >
+        <span class="mr-2">Send magic link</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M7.5 3.75A1.5 1.5 0 006 5.25v13.5a1.5 1.5 0 001.5 1.5h6a1.5 1.5 0 001.5-1.5V15a.75.75 0 011.5 0v3.75a3 3 0 01-3 3h-6a3 3 0 01-3-3V5.25a3 3 0 013-3h6a3 3 0 013 3V9A.75.75 0 0115 9V5.25a1.5 1.5 0 00-1.5-1.5h-6zm10.72 4.72a.75.75 0 011.06 0l3 3a.75.75 0 010 1.06l-3 3a.75.75 0 11-1.06-1.06l1.72-1.72H9a.75.75 0 010-1.5h10.94l-1.72-1.72a.75.75 0 010-1.06z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </button>
+      <button
+        v-if="loading"
+        disabled
+        type="button"
+        class="text-white !bg-[#6363FF] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center m-4"
+      >
+        <svg
+          aria-hidden="true"
+          role="status"
+          class="inline w-4 h-4 mr-3 text-white animate-spin"
+          viewBox="0 0 100 101"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+            fill="#E5E7EB"
+          />
+          <path
+            d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+            fill="currentColor"
+          />
+        </svg>
+        Loading...
+      </button>
+    </template>
+    <template v-if="sent && !user">
+      <div class="text-center space-x-4">
+        <h1 class="text-2xl font-bold">Check your email!</h1>
+        <p class="text-gray-500 mb-6">We've sent you a magic link to login.</p>
+        <!-- open gmail -->
+        <a
+          href="https://mail.google.com/mail/u/0/#inbox"
+          target="_blank"
+          class="text-[#6363FF] hover:underline"
+          >Open Gmail</a
+        >
+        <!-- open outlook -->
+        <a
+          href="https://outlook.live.com/mail/inbox"
+          target="_blank"
+          class="text-[#6363FF] hover:underline"
+          >Open Outlook</a
+        >
+        <!-- open protonmail -->
+        <a
+          href="https://mail.protonmail.com/inbox"
+          target="_blank"
+          class="text-[#6363FF] hover:underline"
+          >Open Protonmail</a
+        >
+      </div>
+    </template>
+    <template v-if="user">
+      <div class="text-center space-x-4">
+        <h1 class="text-2xl font-bold">You're logged in!</h1>
+        <p class="text-gray-500 mb-6">You can now access all lessons.</p>
+        <button
+          @click="gotoLessons"
+          class="text-white !bg-[#6363FF] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center m-4"
+        >
+          Go to lessons
+        </button>
+        <button
+          @click="supabase.auth.signOut"
+          class="text-white !bg-red-500 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 inline-flex items-center m-4"
+        >
+          Logout
+        </button>
+      </div>
+    </template>
+  </div>
+</template>
+
+<script setup lang="ts">
+const supabase = useSupabaseClient();
+const user = useSupabaseUser();
+
+const email = ref("");
+const loading = ref(false);
+const sent = ref(false);
+
+const handleLogin = async () => {
+  // email validation
+  if (!email.value) {
+    alert("Please enter a valid email");
+    return;
+  } else if (!email.value.includes("@")) {
+    alert("Please enter a valid email");
+    return;
+  }
+
+  try {
+    loading.value = true;
+    const { error } = await supabase.auth.signInWithOtp({
+      email: email.value,
+    });
+    if (error) throw error;
+    alert("Check your email for the login link!");
+  } catch (error) {
+    alert(error.error_description || error.message);
+    loading.value = false;
+  } finally {
+    loading.value = false;
+    sent.value = true;
+  }
+};
+
+const gotoLessons = () => {
+  navigateTo("/basic");
+};
+</script>
+
+<style scoped></style>
