@@ -115,7 +115,7 @@
 </template>
 
 <script setup lang="ts">
-console.log(import.meta.env);
+// console.log(import.meta.env);
 
 const supabase = useSupabaseClient();
 const user = useSupabaseUser();
