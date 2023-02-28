@@ -1,0 +1,12 @@
+<template>
+  <!-- <NuxtPage v-if="store.counter === false" /> -->
+  <!-- <LaunchTimer v-else /> -->
+  <!-- <NuxtPage /> -->
+  <LaunchTimer />
+</template>
+
+<script setup lang="ts">
+import { useStore } from "./stores/main";
+
+const store = useStore();
+</script>

@@ -4,4 +4,11 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   if (!user.value && to.path === "/basic") {
     return navigateTo("/");
   }
+
+  /* 
+  if() {
+    if (!user.value && to.path === "/basic") {
+      return navigateTo("/");
+    }
+  } */
 });
