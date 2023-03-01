@@ -1,8 +1,8 @@
 <template>
   <!-- <NuxtPage v-if="store.counter === false" /> -->
   <!-- <LaunchTimer v-else /> -->
-  <!-- <NuxtPage /> -->
-  <LaunchTimer />
+  <NuxtPage />
+  <!-- <LaunchTimer /> -->
 </template>
 
 <script setup lang="ts">
