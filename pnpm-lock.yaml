@@ -9,6 +9,7 @@ specifiers:
   '@supabase/supabase-js': ^2.7.1
   nuxt: ^3.1.0
   pinia: ^2.0.32
+  simple-analytics-vue: ^3.0.1
   vue: ^3.2.47
 
 dependencies:
@@ -16,6 +17,7 @@ dependencies:
   '@pinia/nuxt': 0.4.7_vue@3.2.47
   '@supabase/supabase-js': 2.7.1
   pinia: 2.0.32_vue@3.2.47
+  simple-analytics-vue: 3.0.1_vue@3.2.47
   vue: 3.2.47
 
 devDependencies:
@@ -6648,6 +6650,14 @@ packages:
   /signal-exit/3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
     dev: true
+
+  /simple-analytics-vue/3.0.1_vue@3.2.47:
+    resolution: {integrity: sha512-jS4JNy8Nd9E+5Fy5++i0/8dnMXWqe2MzrpeUzsxOT5MyMHUpAD3Bj8vBNCZl4LCae43hwbBUmDb4eDhBMXrb+Q==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      vue: 3.2.47
+    dev: false
 
   /slash/4.0.0:
     resolution: {integrity: sha512-3dOsAHXXUkQTpOYcoAxLIorMTp4gIQr5IW3iVb7A7lFIp0VHhnynm9izx6TssdrIcVIESAlVjtnO2K8bg+Coew==}
