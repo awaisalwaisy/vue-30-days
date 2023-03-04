@@ -4,7 +4,7 @@ export default defineAppConfig({
     description:
       "The best place to learn VueJs in 30 lessons. Every lesson is a challenge to help you learn VueJs in a fun way.",
     image:
-      "https://raw.githubusercontent.com/awaisalwaisy/vue-30-days/master/assets/vue30days%20cover.png",
+      "https://raw.githubusercontent.com/awaisalwaisy/vue-30-days/master/assets/cover.png",
     socials: {
       twitter: "alvaisy",
       github: "awaisalwaisy",
